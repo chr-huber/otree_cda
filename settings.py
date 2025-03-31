@@ -1,0 +1,232 @@
+from os import environ
+
+SESSION_CONFIGS = [
+    dict(
+         name="soundcheck",
+         display_name="Sound Check Session",
+         app_sequence=["soundcheck"],
+         num_demo_participants=4,
+    ),
+    # dict(
+    #     name="intro",
+    #     display_name="0 Introduction",
+    #     app_sequence=["intro"],
+    #     num_demo_participants=4,
+    # ),
+    # dict(
+    #     name="cda_practice",
+    #     display_name="Asset Market Practice Period",
+    #     app_sequence=['cda_practice'],
+    #     num_demo_participants=4,
+    #     trading_seconds=120,
+    #     trading_summary_seconds=30,
+    #     dividend_high=10,
+    #     dividend_low=0,
+    #     endowment_high_cash=(3000, 20),
+    #     endowment_low_cash=(1000, 60),
+    # ),
+    # dict(
+    #     name='stroop',
+    #     display_name="1a Stroop Treatment",
+    #     app_sequence=['stroop'],
+    #     num_demo_participants=4,
+    # ),
+    # dict(
+    #     name='movie',
+    #     display_name="1b Movie Treatment",
+    #     app_sequence=['movie'],
+    #     num_demo_participants=4,
+    # ),
+    # dict(
+    #     name='cda_rep1',
+    #     display_name="2.1 Asset Market - Repetition 1",
+    #     app_sequence=['cda_rep1'],  # 'cda_rep1'
+    #     num_demo_participants=4,
+    #     trading_seconds=120,
+    #     trading_summary_seconds=30,
+    #     dividend_high=10,
+    #     dividend_low=0,
+    #     endowment_high_cash=(3000, 20),
+    #     endowment_low_cash=(1000, 60),
+    # ),
+    # dict(
+    #     name="start_rep2",
+    #     display_name="2.2 Announcement of Repetition 2",
+    #     app_sequence=["start_rep2"],
+    #     num_demo_participants=4,
+    # ),
+    # dict(
+    #     name='cda_rep2',
+    #     display_name="2 Asset Market - Repetition 2",
+    #     app_sequence=['cda_rep2'],
+    #     num_demo_participants=4,
+    #     trading_seconds=120,
+    #     trading_summary_seconds=30,
+    #     dividend_high=10,
+    #     dividend_low=0,
+    #     endowment_high_cash=(3000, 20),
+    #     endowment_low_cash=(1000, 60),
+    # ),
+    # dict(
+    #     name="crt7",
+    #     display_name="3.1 Cognitive Reflection Test",
+    #     app_sequence=["crt7"],
+    #     num_demo_participants=4,
+    # ),
+    # dict(
+    #     name="apm",
+    #     display_name="3.2 Advanced Progressive Matrices",
+    #     app_sequence=["apm"],
+    #     num_demo_participants=4,
+    # ),
+    # dict(
+    #     name="egt",
+    #     display_name="3.3 Eye Gaze Test",
+    #     app_sequence=["egt"],
+    #     num_demo_participants=4,
+    # ),
+    # dict(
+    #     name="demographics",
+    #     display_name="4 Demographics + Payments",
+    #     app_sequence=["demographics"],
+    #     num_demo_participants=4,
+    # ),
+    dict(
+        name="complete_stroop",  # needs second round of market
+        display_name="Complete Experiment - Stroop",
+        app_sequence=[
+            "intro",
+            "cda_practice",
+            "stroop",
+            "cda_rep1",
+            "start_rep2",
+            "cda_rep2",
+            "crt7",
+            "apm",
+            "egt",
+            "demographics"
+        ],
+        num_demo_participants=4,
+        experiment="stroop",
+        trading_seconds=120,
+        trading_summary_seconds=20,
+        dividend_high=10,
+        dividend_low=0,
+        endowment_high_cash=(3000, 20),
+        endowment_low_cash=(1000, 60),
+    ),
+    dict(
+        name="complete_movie",  # needs second round of market
+        display_name="Complete Experiment - Movie",
+        app_sequence=[
+            "intro",
+            "cda_practice",
+            "movie",
+            "cda_rep1",
+            "start_rep2",
+            "cda_rep2",
+            "crt7",
+            "apm",
+            "egt",
+            "demographics"
+        ],
+        num_demo_participants=4,
+        experiment="movie",
+        trading_seconds=120,
+        trading_summary_seconds=20,
+        dividend_high=10,
+        dividend_low=0,
+        endowment_high_cash=(3000, 20),
+        endowment_low_cash=(1000, 60),
+    ),
+    dict(
+        name="jvi_complete",  # needs second round of market
+        display_name="Complete Experiment - Teaching",
+        app_sequence=[
+            "intro",
+            "cda_practice",
+            "movie",
+            "cda_rep1",
+            # "start_rep2",
+            # "cda_rep2",
+            "crt7",
+            # "apm",
+            "egt",
+            "demographics"
+        ],
+        num_demo_participants=4,
+        experiment="teaching",
+        trading_seconds=120,
+        trading_summary_seconds=20,
+        # trading_seconds=120,
+        # trading_summary_seconds=20,        
+        dividend_high=10,
+        dividend_low=0,
+        endowment_high_cash=(3000, 20),
+        endowment_low_cash=(1000, 60),
+    )    
+]
+
+# if you set a property in SESSION_CONFIG_DEFAULTS, it will be inherited by all configs
+# in SESSION_CONFIGS, except those that explicitly override it.
+# the session config can be accessed from methods in your apps as self.session.config,
+# e.g. self.session.config['participation_fee']
+
+SESSION_CONFIG_DEFAULTS = dict(
+    real_world_currency_per_point=1/160, participation_fee=6.00, doc=""
+)
+
+PARTICIPANT_FIELDS = ['stroop_points', 'crt_points', 'crt_num_correct', 'hl_chose_a', 'hl_row', 'hl_lottery_low', 'hl_points', 'part1_points', 'part2_points']
+SESSION_FIELDS = ['repetition', 'pay_repetition']
+
+# ISO-639 code
+# for example: de, fr, ja, ko, zh-hans
+LANGUAGE_CODE = 'en'
+
+# e.g. EUR, GBP, CNY, JPY
+REAL_WORLD_CURRENCY_CODE = 'EUR'
+USE_POINTS = True
+
+ADMIN_USERNAME = 'admin'
+# for security, best to set admin password in an environment variable
+ADMIN_PASSWORD = environ.get('OTREE_ADMIN_PASSWORD')
+
+DEMO_PAGE_INTRO_HTML = """ """
+
+SECRET_KEY = '4324687630047'
+
+ROOMS = [
+    dict(
+        name='berlin',
+        display_name='Berlin Lab - Labels S01 - S24',
+        participant_label_file='_rooms/econlab.txt',
+    ),
+    dict(
+        name='innsbruck',
+        display_name='Innsbruck EconLab - Labels S01 - S24',
+        participant_label_file='_rooms/econlab.txt',
+    ),
+    dict(
+        name='vcee',
+        display_name='VCEE Lab - Labels S01 - S28',
+        participant_label_file='_rooms/vcee.txt',
+    ),
+    dict(
+        name='vcee_any',
+        display_name='VCEE Lab - Any Label',
+    ),
+    dict(
+        name='wu',
+        display_name='WU Lab - Labels S01 - S32',
+        participant_label_file='_rooms/wu.txt',
+    ),
+    dict(
+        name='wu_any',
+        display_name='WU Lab - Any Label',
+    ),
+    dict(
+        name='jvi2024',
+        display_name='JVI 2024',
+        participant_label_file='_rooms/jvi.txt',
+    ),    
+]

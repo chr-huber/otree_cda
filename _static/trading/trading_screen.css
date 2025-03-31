@@ -1,0 +1,35 @@
+.otree-body {
+    max-width: 1200px;
+}
+
+.otree-title {
+    display: inline-block;
+    float: left;
+}
+
+.page-header {
+    padding-top: 0;
+}
+
+.otree-timer {
+    display: inline-block;
+    float: right;
+    margin-bottom: 0;
+    margin-top: 20px;
+    padding: 0.5rem;
+    width: 200px;
+    text-align: center;
+}
+.otree-timer p {
+    margin: 0;
+}
+/* bin */
+i.bi {
+    color: #ff0000;
+}
+
+#id_message {
+    color: #ff0000;
+    font-style: italic;
+    text-align: center;
+}
