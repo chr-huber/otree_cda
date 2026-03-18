@@ -1,4 +1,4 @@
-let price_chart = Highcharts.chart('container', {
+var price_chart = Highcharts.chart('container', {
     chart: {
         type: 'spline'
     },
@@ -39,9 +39,6 @@ let price_chart = Highcharts.chart('container', {
                 lineWidth: 1,
                 lineColor: null
             },
-            label: {
-                enabled: false
-            }
         }
     },
 

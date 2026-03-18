@@ -1,6 +1,7 @@
 // only player one asks for advance periodically
+let advance_interval = null;
 if (js_vars.player_id === 1) {
-    window.setInterval(function () {
+    advance_interval = window.setInterval(function () {
         liveSend('advance?')
     }, 5000);
 } else {
@@ -10,6 +11,9 @@ if (js_vars.player_id === 1) {
 
 function liveRecv(data) {
     if (data['advance'] === js_vars.current_page_name) {
+        if (advance_interval !== null) {
+            clearInterval(advance_interval);
+        }
         document.getElementById('form').submit();
     }
 }

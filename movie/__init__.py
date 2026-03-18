@@ -109,16 +109,13 @@ def clip_feeling_choices(player: Player):
 def creating_session(subsession: Subsession):
     # check if we have a valid number of players, skipped in debug
     num_players = len(subsession.get_players())
-    players_per_group = int(num_players / 2)
-
-    if num_players % 2 != 0:
-        raise ValueError('Number of players must be even')
+    players_per_group = (num_players + 1) // 2  # ceiling: first group gets the extra player if odd
 
     # if not DEBUG and num_players not in (16, 20):
     #     raise ValueError('Number of players must be 16 or 20')
 
     # first half of players forms a group, second half forms another group
-    subsession.set_group_matrix([[i + 1 for i in range(players_per_group)], [i + 1 for i in range(players_per_group, players_per_group * 2)]])
+    subsession.set_group_matrix([[i + 1 for i in range(players_per_group)], [i + 1 for i in range(players_per_group, num_players)]])
 
     # select a repetition to pay
     subsession.session.vars['pay_repetition'] = random.randint(1, 1)

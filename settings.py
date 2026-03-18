@@ -173,7 +173,14 @@ SESSION_CONFIGS = [
 # e.g. self.session.config['participation_fee']
 
 SESSION_CONFIG_DEFAULTS = dict(
-    real_world_currency_per_point=1/160, participation_fee=6.00, doc=""
+    real_world_currency_per_point=1/160, participation_fee=6.00, doc="",
+    # Market grouping: set one of these to override automatic grouping.
+    # traders_per_market: all markets have equal size (must divide num_players evenly).
+    # num_markets: split players into this many markets as evenly as possible.
+    # If both are set, traders_per_market takes priority.
+    # Leave both as None to use automatic grouping based on player count.
+    traders_per_market=10,
+    num_markets=2
 )
 
 PARTICIPANT_FIELDS = ['stroop_points', 'crt_points', 'crt_num_correct', 'hl_chose_a', 'hl_row', 'hl_lottery_low', 'hl_points', 'part1_points', 'part2_points']

@@ -102,26 +102,32 @@ def market_create_session(subsession):
     subsession.practice = C.REPETITION == 0
 
     num_traders = len(subsession.get_players())
-    if num_traders % 4 != 0:
-        raise Exception("Need a multiple of 4 traders")
 
-    if num_traders < 16:
-        traders_per_market = int(num_traders / 2)
-    elif num_traders % 20 == 0:
-        traders_per_market = 10
-    elif num_traders % 16 == 0:
-        traders_per_market = 8
-    else:
-        raise Exception("Number of traders not supported")
-
-    num_markets = int(num_traders / traders_per_market)
-    # print(num_traders, traders_per_market, num_markets)
-
-    # set group matrix
     if subsession.round_number == 1:
+        if sc.get("traders_per_market") is not None:
+            traders_per_market = sc["traders_per_market"]
+            num_markets = -(-num_traders // traders_per_market)  # ceiling division
+        elif sc.get("num_markets") is not None:
+            num_markets = sc["num_markets"]
+        elif num_traders < 6:
+            num_markets = 1
+        elif num_traders < 16:
+            num_markets = 2
+        elif num_traders % 20 == 0:
+            num_markets = num_traders // 10
+        elif num_traders % 16 == 0:
+            num_markets = num_traders // 8
+        else:
+            num_markets = max(2, round(num_traders / 8))
+
+        base_size = num_traders // num_markets
+        remainder = num_traders % num_markets
         group_matrix = []
-        for market in range(num_markets):
-            group_matrix.append([market * traders_per_market + i + 1 for i in range(traders_per_market)])
+        idx = 1
+        for i in range(num_markets):
+            size = base_size + (1 if i < remainder else 0)
+            group_matrix.append(list(range(idx, idx + size)))
+            idx += size
 
         subsession.set_group_matrix(group_matrix)
     else:
@@ -154,7 +160,8 @@ def market_create_session(subsession):
 
         # set cash and assets
         # random sequence
-        high_cash = [True for i in range(int(traders_per_market / 2))] + [False for i in range(int(traders_per_market / 2))]
+        group_size = len(group.get_players())
+        high_cash = [True] * ((group_size + 1) // 2) + [False] * (group_size // 2)
         random.shuffle(high_cash)
         for player in group.get_players():
             # first round endowments
