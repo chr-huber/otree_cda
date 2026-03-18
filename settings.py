@@ -180,7 +180,7 @@ SESSION_CONFIG_DEFAULTS = dict(
     # If both are set, traders_per_market takes priority.
     # Leave both as None to use automatic grouping based on player count.
     traders_per_market=10,
-    num_markets=2
+    num_markets=2,
 )
 
 PARTICIPANT_FIELDS = ['stroop_points', 'crt_points', 'crt_num_correct', 'hl_chose_a', 'hl_row', 'hl_lottery_low', 'hl_points', 'part1_points', 'part2_points']
