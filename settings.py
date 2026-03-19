@@ -236,4 +236,9 @@ ROOMS = [
         display_name='JVI 2024',
         participant_label_file='_rooms/jvi.txt',
     ),    
+    dict(
+        name='aecf2026',
+        display_name='AECF 2026',
+        participant_label_file='_rooms/aecf2026.txt',
+    ),        
 ]
