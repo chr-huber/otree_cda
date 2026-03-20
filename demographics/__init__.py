@@ -153,25 +153,6 @@ class Payments(TranslatedPage):
         ps = player.session
 
         context = dict()
-        if ps.config.get('experiment', None) == "stroop":
-            part1_points = pp.vars.get("part1_points", cu(32))
-            part1_task1_points = pp.vars.get("stroop_points", cu(0))
-            part1_task2_points = pp.vars.get("crt_points", cu(0))
-            part1_task3_points = pp.vars.get("hl_points", cu(32))
-            context.update({
-                "part1_points": part1_points,
-                "part1_eur": part1_points.to_real_world_currency(ps),
-                "part1_task1_points": part1_task1_points,
-                "part1_task1_eur": part1_task1_points.to_real_world_currency(ps),
-                "part1_task2_points": part1_task2_points,
-                "part1_task2_eur": part1_task2_points.to_real_world_currency(ps),
-                "part1_task3_points": part1_task3_points,
-                "part1_task3_eur": part1_task3_points.to_real_world_currency(ps),
-                "crt_num_correct": pp.vars.get("crt_num_correct", 0),
-                "hl_lottery_choice": "A" if pp.vars.get("hl_chose_a", True) else "B",
-                "hl_row": pp.vars.get("hl_row", 1),
-                "hl_outcome": "€0.20" if pp.vars.get("hl_pay_left", True) else "€4.20",
-            })
 
         pp.payoff = cu(ceil(pp.payoff / 32) * 32)
         
@@ -193,7 +174,7 @@ class Payments(TranslatedPage):
 page_sequence = [
     Part4Announcement,
     Part4Waitpage,
-    # Demographics,
-    # Questionnaire,
+    Demographics,
+    Questionnaire,
     Payments
 ]

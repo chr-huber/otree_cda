@@ -2,155 +2,14 @@ from os import environ
 
 SESSION_CONFIGS = [
     dict(
-         name="soundcheck",
-         display_name="Sound Check Session",
-         app_sequence=["soundcheck"],
-         num_demo_participants=4,
-    ),
-    # dict(
-    #     name="intro",
-    #     display_name="0 Introduction",
-    #     app_sequence=["intro"],
-    #     num_demo_participants=4,
-    # ),
-    # dict(
-    #     name="cda_practice",
-    #     display_name="Asset Market Practice Period",
-    #     app_sequence=['cda_practice'],
-    #     num_demo_participants=4,
-    #     trading_seconds=120,
-    #     trading_summary_seconds=30,
-    #     dividend_high=10,
-    #     dividend_low=0,
-    #     endowment_high_cash=(3000, 20),
-    #     endowment_low_cash=(1000, 60),
-    # ),
-    # dict(
-    #     name='stroop',
-    #     display_name="1a Stroop Treatment",
-    #     app_sequence=['stroop'],
-    #     num_demo_participants=4,
-    # ),
-    # dict(
-    #     name='movie',
-    #     display_name="1b Movie Treatment",
-    #     app_sequence=['movie'],
-    #     num_demo_participants=4,
-    # ),
-    # dict(
-    #     name='cda_rep1',
-    #     display_name="2.1 Asset Market - Repetition 1",
-    #     app_sequence=['cda_rep1'],  # 'cda_rep1'
-    #     num_demo_participants=4,
-    #     trading_seconds=120,
-    #     trading_summary_seconds=30,
-    #     dividend_high=10,
-    #     dividend_low=0,
-    #     endowment_high_cash=(3000, 20),
-    #     endowment_low_cash=(1000, 60),
-    # ),
-    # dict(
-    #     name="start_rep2",
-    #     display_name="2.2 Announcement of Repetition 2",
-    #     app_sequence=["start_rep2"],
-    #     num_demo_participants=4,
-    # ),
-    # dict(
-    #     name='cda_rep2',
-    #     display_name="2 Asset Market - Repetition 2",
-    #     app_sequence=['cda_rep2'],
-    #     num_demo_participants=4,
-    #     trading_seconds=120,
-    #     trading_summary_seconds=30,
-    #     dividend_high=10,
-    #     dividend_low=0,
-    #     endowment_high_cash=(3000, 20),
-    #     endowment_low_cash=(1000, 60),
-    # ),
-    # dict(
-    #     name="crt7",
-    #     display_name="3.1 Cognitive Reflection Test",
-    #     app_sequence=["crt7"],
-    #     num_demo_participants=4,
-    # ),
-    # dict(
-    #     name="apm",
-    #     display_name="3.2 Advanced Progressive Matrices",
-    #     app_sequence=["apm"],
-    #     num_demo_participants=4,
-    # ),
-    # dict(
-    #     name="egt",
-    #     display_name="3.3 Eye Gaze Test",
-    #     app_sequence=["egt"],
-    #     num_demo_participants=4,
-    # ),
-    # dict(
-    #     name="demographics",
-    #     display_name="4 Demographics + Payments",
-    #     app_sequence=["demographics"],
-    #     num_demo_participants=4,
-    # ),
-    dict(
-        name="complete_stroop",  # needs second round of market
-        display_name="Complete Experiment - Stroop",
+        name="teaching",
+        display_name="Teaching - Full (with tasks)",
         app_sequence=[
             "intro",
             "cda_practice",
-            "stroop",
             "cda_rep1",
-            "start_rep2",
-            "cda_rep2",
             "crt7",
             "apm",
-            "egt",
-            "demographics"
-        ],
-        num_demo_participants=4,
-        experiment="stroop",
-        trading_seconds=120,
-        trading_summary_seconds=20,
-        dividend_high=10,
-        dividend_low=0,
-        endowment_high_cash=(3000, 20),
-        endowment_low_cash=(1000, 60),
-    ),
-    dict(
-        name="complete_movie",  # needs second round of market
-        display_name="Complete Experiment - Movie",
-        app_sequence=[
-            "intro",
-            "cda_practice",
-            "movie",
-            "cda_rep1",
-            "start_rep2",
-            "cda_rep2",
-            "crt7",
-            "apm",
-            "egt",
-            "demographics"
-        ],
-        num_demo_participants=4,
-        experiment="movie",
-        trading_seconds=120,
-        trading_summary_seconds=20,
-        dividend_high=10,
-        dividend_low=0,
-        endowment_high_cash=(3000, 20),
-        endowment_low_cash=(1000, 60),
-    ),
-    dict(
-        name="jvi_complete",  # needs second round of market
-        display_name="Complete Experiment - Teaching",
-        app_sequence=[
-            "intro",
-            "cda_practice",
-            "movie",
-            "cda_rep1",
-            # "start_rep2",
-            # "cda_rep2",
-            "crt7",
-            # "apm",
             "egt",
             "demographics"
         ],
@@ -158,13 +17,53 @@ SESSION_CONFIGS = [
         experiment="teaching",
         trading_seconds=120,
         trading_summary_seconds=20,
-        # trading_seconds=120,
-        # trading_summary_seconds=20,        
         dividend_high=10,
         dividend_low=0,
         endowment_high_cash=(3000, 20),
         endowment_low_cash=(1000, 60),
-    )    
+    ),
+    dict(
+        name="teaching_slim",
+        display_name="Teaching - Slim (market only)",
+        app_sequence=[
+            "intro",
+            "cda_practice",
+            "cda_rep1",
+            "demographics"
+        ],
+        num_demo_participants=4,
+        experiment="teaching",
+        trading_seconds=120,
+        trading_summary_seconds=20,
+        dividend_high=10,
+        dividend_low=0,
+        endowment_high_cash=(3000, 20),
+        endowment_low_cash=(1000, 60),
+    ),
+    dict(
+        name="crt7",
+        display_name="Cognitive Reflection Test",
+        app_sequence=["crt7"],
+        num_demo_participants=4,
+    ),
+    dict(
+        name="apm",
+        display_name="Advanced Progressive Matrices",
+        app_sequence=["apm"],
+        num_demo_participants=4,
+    ),
+    dict(
+        name="egt",
+        display_name="Eye Gaze Test",
+        app_sequence=["egt"],
+        num_demo_participants=4,
+    ),
+    dict(
+        name="demographics",
+        display_name="Demographics + Payments",
+        app_sequence=["demographics"],
+        num_demo_participants=4,
+    ),
 ]
 
 # if you set a property in SESSION_CONFIG_DEFAULTS, it will be inherited by all configs
@@ -183,7 +82,7 @@ SESSION_CONFIG_DEFAULTS = dict(
     num_markets=2,
 )
 
-PARTICIPANT_FIELDS = ['stroop_points', 'crt_points', 'crt_num_correct', 'hl_chose_a', 'hl_row', 'hl_lottery_low', 'hl_points', 'part1_points', 'part2_points']
+PARTICIPANT_FIELDS = ['crt_points', 'crt_num_correct', 'part1_points', 'part2_points']
 SESSION_FIELDS = ['repetition', 'pay_repetition']
 
 # ISO-639 code
